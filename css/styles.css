@@ -1,0 +1,467 @@
+/* Basic styling and layout */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgb(156, 158, 219), black);
+  filter: blur(2px);
+  z-index: -1;
+}
+
+/* Header styling */
+header {
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #060505;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  font-family: "Mukta", sans-serif;
+  font-size: 1.8rem;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+#cart-icon {
+  background-color: #333;
+  color: rgb(120, 124, 220);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 40px;
+}
+
+#cart-icon:hover {
+  background-color: #180d0b;
+}
+
+/* Products grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 5%; /* 10% space from both sides */
+  width: 97%; /* Takes up most of the window width */
+  max-width: 1200px;
+  justify-items: center;
+}
+
+/* Product card */
+.product-card {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  max-width: 280px; /* Allows card to stretch to fit grid */
+  padding: 1rem;
+  text-align: center;
+  animation: fadeInUp 0.5s ease forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Ensure image fills most of the card */
+.product-card img {
+  width: 100%;
+  height: 250px; /* Increased height to make the image larger */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.product-card button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 80%;
+}
+
+.product-card button:hover {
+  background-color: #888bd3;
+  border-color: #888bd3;
+}
+
+/* Responsive grid layout for different screen sizes */
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+  }
+}
+
+/* Modal and hidden elements */
+.hidden {
+  display: none;
+}
+
+.modal,
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(156, 158, 219);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  font-weight: 400;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+#close-popup {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#close-popup:hover {
+  background-color: #555;
+}
+
+/* Fade-in animation for product cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading spinner animation */
+.loading {
+  position: relative;
+  background: linear-gradient(90deg, #0061ff 0%, #60efff 100%);
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.button-loading {
+  position: relative;
+  background: linear-gradient(90deg, #0061ff 0%, #60efff 100%);
+  border-radius: 8px;
+  cursor: wait;
+}
+
+.button-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s ease infinite;
+}
+#load-products {
+  background: linear-gradient(
+    90deg,
+    rgb(156, 158, 219) 0%,
+    rgb(25, 25, 25) 100%
+  ); /* Custom color gradient */
+  color: #ffffff; /* Text color */
+  border: none;
+  border-radius: 12px; /* Rounded corners */
+  padding: 0.6rem 1.5rem; /* Spacing inside button */
+  font-size: 1.1rem; /* Font size */
+  font-weight: bold; /* Font weight */
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+/* Hover effect */
+#load-products:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(156, 158, 219) 0%,
+    #814639 100%
+  ); /* Darker gradient on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+#buy-button,
+#close-cart {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect */
+#buy-button:hover,
+#close-cart:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Active effect for button click */
+#buy-button:active,
+#close-cart:active {
+  background-color: #3d8c42; /* Darker shade when active */
+  transform: scale(0.98); /* Slightly shrink on click */
+}
+
+/* Additional styling for buy button specifically */
+#buy-button {
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* Additional styling for close button specifically */
+#close-cart {
+  background-color: #f44336; /* Red background for close button */
+}
+
+#close-cart:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+/* Styling for checkout button */
+#checkout-btn {
+  background: linear-gradient(90deg, #2196f3, #42a5f5); /* Blue gradient */
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.8rem 2rem;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effect with glow and scaling */
+#checkout-btn:hover {
+  color: #e3f2fd;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(66, 165, 245, 0.5);
+}
+
+/* Border animation */
+#checkout-btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, #42a5f5, #2196f3, #1976d2);
+  border-radius: 50px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#checkout-btn:hover::before {
+  opacity: 1;
+}
+
+/* Active state for subtle press effect */
+#checkout-btn:active {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(66, 165, 245, 0.3);
+}
+/* Container for cart items */
+#cart-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* Style for each cart item */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Item name styling */
+.cart-item .item-name {
+  flex: 2;
+  font-weight: 500;
+  text-align: left;
+  padding-right: 10px;
+  color: #111;
+}
+
+/* Item quantity styling */
+.cart-item .item-quantity {
+  flex: 1;
+  text-align: center;
+  color: #666;
+}
+
+/* Item price styling */
+.cart-item .item-price {
+  flex: 1;
+  text-align: right;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Style for empty cart message */
+#cart-items .empty-message {
+  text-align: center;
+  color: #777;
+  font-size: 1rem;
+  padding: 1rem 0;
+}
+/* Style for the cart container */
+#cart-items {
+  margin-top: 20px;
+}
+
+/* Style for each cart item */
+.cart-item {
+  display: flex;
+  justify-content: space-between; /* Distribute space between elements */
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px; /* Add space between cart items */
+  width: 100%;
+}
+
+/* Style for the cart item checkbox */
+.cart-item-checkbox {
+  width: 20px;
+  height: 20px;
+  transform: scale(1.5); /* Scale the checkbox size */
+  margin-right: 10px;
+}
+
+/* Style for cart item content */
+.cart-item .item-name,
+.cart-item .item-quantity,
+.cart-item .item-price {
+  flex: 1; /* Make sure each item takes up equal space */
+  text-align: center; /* Center the text */
+}
+
+/* Delete button styling */
+.cart-item .delete-item {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  align-self: center; /* Align delete button to center vertically */
+}
+
+/* Hover effect for delete button */
+.delete-item:hover {
+  background-color: #c0392b;
+}
+
+.delete-item:focus {
+  outline: none;
+}
+
+/* Optional - Hover effect for cart items */
+.cart-item:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}

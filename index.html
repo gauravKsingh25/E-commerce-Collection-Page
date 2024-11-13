@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Collection</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>All Collection</h1>
+      <button id="cart-icon">
+        <span class="material-icons">shopping_cart</span>
+        (<span id="cart-count">0</span>)
+      </button>
+    </header>
+    <main>
+      
+
+    <main>
+      <div class="center-container">
+        <button id="load-products">Load Products</button>
+      </div>
+      <div id="products-container"></div>
+    </main>
+    
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal hidden">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <button id="checkout-btn">Checkout</button>
+      <button id="close-cart">Close</button>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal hidden">
+      <h2>Enter Address</h2>
+      <div id="selected-items"></div>
+      <form id="address-form">
+        <input type="text" placeholder="Enter your address" required />
+        <button id="buy-button" type="submit">Buy</button>
+      </form>
+    </div>
+
+    <!-- Confirmation Message -->
+    <div id="confirmation-message" class="hidden">
+      <p>Your item will be delivered to your address.</p>
+      <button id="close-confirmation">Close</button>
+    </div>
+
+    <!-- Delivery Popup -->
+    <div id="delivery-popup" class="popup hidden">
+      <p>Your order will be delivered on Friday, November 15, 2024.</p>
+    </div>
+
+    <!-- Import scripts as modules -->
+    <script type="module" src="js/script.js"></script>
+  </body>
+</html>
