@@ -18,7 +18,7 @@ This project demonstrates an e-commerce collection page showcasing products usin
 
 ## Live Demo
 
-A live version is deployed here: [Add link to deployment]
+A live version is deployed here: https://gauravksingh25.github.io/E-commerce-Collection-Page/
 
 ## Additional Notes
 
